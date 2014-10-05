@@ -15,6 +15,8 @@ set(INITIAL_CACHE "CMAKE_BUILD_TYPE=Release")
 # create cache
 file(WRITE "${CTEST_BINARY_DIRECTORY}/CMakeCache.txt" ${INITIAL_CACHE})
 
+set (CTEST_CMAKE_GENERATOR "Unix Makefiles")
+
 # run the classical ctest suite without update
 # travis-ci handles this for us
 ctest_start     (Continuous)
