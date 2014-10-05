@@ -14,10 +14,10 @@ cache:
   - _build
 
 install:
-- sudo apt-get install -qq cmake python python-nose zlib1g-dev libbz2-dev libboost-dev python-jinja2
+- sudo apt-get install -qq cmake
 
 script:
-- ./util/travis/linux-cibuild.sh
+- ./travis/linux-cibuild.sh
 
 after_script:
-- ./util/travis/coveralls.sh
+- ./travis/coveralls.sh
