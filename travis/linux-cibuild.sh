@@ -1,8 +1,10 @@
 #!/bin/bash
 
+trap popd EXIT
+
 # get some infos from git to embed it in the build name
 export SOURCE_DIRECTORY=`pwd`
-mkdir _build
+mkdir -p _build && pushd _build
 
 # define the build name
 if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
@@ -27,14 +29,14 @@ if [ "${CXX}" == "g++" ]; then
   echo "LDFLAGS=${LDFLAGS}"
 fi
 
-ctest -V -S travis/linux-cibuild.cmake
+ctest -V -S ../travis/linux-cibuild.cmake
 
 # we indicate build failures if ctest experienced any errors
 if [ -f ${SOURCE_DIRECTORY}/failed ]; then
   exit -1
 fi
 
-FAILED_TEST=$(find _build -name "Test.xml" -type f | xargs grep "<Test Status=\"failed\">" -c)
+FAILED_TEST=$(find . -name "Test.xml" -type f | xargs grep "<Test Status=\"failed\">" -c)
 
 if [ "${FAILED_TEST}" -gt "0" ]; then
     exit -1
