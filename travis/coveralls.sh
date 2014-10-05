@@ -5,5 +5,5 @@
 if [ "$CXX" == "g++" ];
 then
   sudo pip install cpp-coveralls
-  coveralls -b . -r . -e CMakeFiles -E 'CMake.*\.cpp' -t "${COVERALLS_TOKEN}"
+  coveralls -b . -r . -E '.*CMake.*\.cpp' -t "${COVERALLS_TOKEN}"
 fi
