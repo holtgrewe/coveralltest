@@ -27,7 +27,7 @@ if [ "${CXX}" == "g++" ]; then
   echo "LDFLAGS=${LDFLAGS}"
 fi
 
-ctest -V -S util/travis/linux-cibuild.cmake
+ctest -V -S travis/linux-cibuild.cmake
 
 # we indicate build failures if ctest experienced any errors
 if [ -f ${SOURCE_DIRECTORY}/failed ]; then
